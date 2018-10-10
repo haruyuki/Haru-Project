@@ -4,7 +4,7 @@ install: true
 addons:
   apt:
     packages:
-    - lua 5.1
+    - lua5.1
     - python2.7
     - luarocks
 
