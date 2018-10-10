@@ -1,9 +1,6 @@
--- Meta class
 Ship = {}
 
--- Base class method new
-
-function Ship:new (o, image, scale, speed, bullet)
+function Ship:new(o, image, scale, speed, bullet)  -- Initialise the Ship class
   o = o or {}
   setmetatable(o, self)
   self.__index = self
@@ -21,28 +18,25 @@ function Ship:new (o, image, scale, speed, bullet)
   return o
 end
 
--- Base class method printArea
-
-function Ship:getDimensions ()
+function Ship:getDimensions()  -- Returns the width and height of the ship
    return {width = self.image:getWidth(), height = self.image:getHeight()}
 end
 
-function Ship:decreaseSpeed (speed)
+function Ship:decreaseSpeed(speed)  -- Decrease ship speed
   if self.speed > 0 then
     self.speed = self.speed - speed
   end
 end
 
-function Ship:increaseSpeed (speed)
+function Ship:increaseSpeed(speed)  -- Increase ship speed
   if self.speed < 10 then
     self.speed = self.speed + speed
   end
 end
 
-function Ship:fire ()
-  cooldown = self.bullet.cooldown
+function Ship:fire()  -- Function to fire bullets
   if self.bullet.cooldown <= 0 then
-    self.bullet.cooldown = 8
+    self.bullet.cooldown = self.bullet.masterCooldown
     bullet = {
       x = self.x,
       y = self.y
