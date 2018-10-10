@@ -7,11 +7,10 @@
 
 The classic spaceship shooter game written in Lua using the LÖVE game framework. As the name suggests, this will be a small project I will be creating through these Spring months.
 
-A Discord bot for the virtual pet adoption website [Chicken Smoothie](https://www.chickensmoothie.com). With this bot you can view information on pets and pound opening times straight from Discord without accessing the website.
-
 ### Controls
 
 Arrow keys - Move
+
 z - Fire weapon
 
 ## Built With
