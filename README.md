@@ -1,4 +1,4 @@
-# Haru Project! (Spring Project!)
+<img src="https://i.imgur.com/Hp5oZ0o.png" width="600" alt="Haru Project!">
 
 [![Lua 5.3.5](https://img.shields.io/badge/Lua-5.3.5-blue.svg)](https://www.lua.org)
 [![LÖVE 11.1](https://img.shields.io/badge/LÖVE-11.1-blue.svg)](https://love2d.org)
