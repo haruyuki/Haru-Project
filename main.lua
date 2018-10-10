@@ -5,6 +5,8 @@ enemies_controller.enemies = {}
 require("library")
 require("draw")
 require("load")
+
+require("bulletClass")
 require("shipClass")
 
 function enemies_controller:spawnEnemy(x, y)
@@ -30,57 +32,59 @@ function enemy:fire()
 end
 
 function love.update(dt)
-  player.cooldown = player.cooldown - 1
+  if ship.bullet.cooldown > 0 then
+    ship.bullet.cooldown = ship.bullet.cooldown - 1
+  end
 
   if love.keyboard.isDown("up") then
-    if player.y >= 0 then
+    if ship.y >= 0 then
       if love.keyboard.isDown("lshift") then
-        player.y = player.y - ship.speed / 2
+        ship.y = ship.y - ship.speed / 2
       else
-        player.y = player.y - ship.speed
+        ship.y = ship.y - ship.speed
       end
     end
 
   elseif love.keyboard.isDown("down") then
-    if player.y <= love.graphics.getHeight() - ship_height then
+    if ship.y <= love.graphics.getHeight() then
       if love.keyboard.isDown("lshift") then
-        player.y = player.y + ship.speed / 2
+        ship.y = ship.y + ship.speed / 2
       else
-        player.y = player.y + ship.speed
+        ship.y = ship.y + ship.speed
       end
     end
   end
 
   if love.keyboard.isDown("right") then
-    if player.x <= love.graphics.getWidth() - ship_width then
+    if ship.x <= love.graphics.getWidth() then
       if love.keyboard.isDown("lshift") then
-        player.x = player.x + ship.speed / 2
+        ship.x = ship.x + ship.speed / 2
       else
-        player.x = player.x + ship.speed
+        ship.x = ship.x + ship.speed
       end
     end
 
   elseif love.keyboard.isDown("left") then
-    if player.x >= 0 then
+    if ship.x >= 0 then
       if love.keyboard.isDown("lshift") then
-        player.x = player.x - ship.speed / 2
+        ship.x = ship.x - ship.speed / 2
       else
-        player.x = player.x - ship.speed
+        ship.x = ship.x - ship.speed
       end
     end
   end
 
   if love.keyboard.isDown("z") then
-    player.fire()
+    ship:fire()
   end
 
   for _,e in pairs(enemies_controller.enemies) do
     e.y = e.y + 1.5
   end
 
-  for i,b in ipairs(player.bullets) do
+  for i,b in ipairs(ship.bullets) do
     if b.y < - 10 then
-      table.remove(player.bullets, i)
+      table.remove(ship.bullets, i)
     end
     b.y = b.y - 12
   end
