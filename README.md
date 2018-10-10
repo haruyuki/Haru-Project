@@ -9,6 +9,7 @@ The classic spaceship shooter game written in Lua using the LÖVE game framework
 ### Controls
 
 Arrow keys - Move
+
 z - Fire weapon
 
 ## Built With
