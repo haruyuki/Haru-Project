@@ -1,12 +1,14 @@
 language: bash
-sudo: true
+sudo: false
 install: true
 addons:
   apt:
     packages:
-    - lua5.3
     - python2.7
     - luarocks
+
+env: LUA="lua 5.3"
+
 before_install:
   - "`luarocks path`" # execute the luarocks output - sets the paths for 'local' tree
   
