@@ -10,10 +10,11 @@ function Bullet:new (o, image, scale, speed, cooldown)
    image = image or ''
    scale = scale or {x = 1, y = 1}
    speed = speed or 3
-   cooldown = cooldown or 8
+   cooldown = cooldown or 10
    self.image = love.graphics.newImage(image);
    self.scale = scale
    self.speed = speed
+   self.masterCooldown = cooldown
    self.cooldown = cooldown
    return o
 end

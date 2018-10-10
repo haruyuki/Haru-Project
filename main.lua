@@ -86,7 +86,7 @@ function love.update(dt)
     if b.y < - 10 then
       table.remove(ship.bullets, i)
     end
-    b.y = b.y - 12
+    b.y = b.y - ship.bullet.speed
   end
 end
 
