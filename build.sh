@@ -20,7 +20,7 @@ if [ "$1" == "deploy" ]; then
  touch .
  git add .
  git commit -m "deploy to github pages"
- git push --force --quiet "https://${GH_TOKEN}@github.com/${2}.git" master:gh-pages
+ git push --force --quiet "https://${github_token}@github.com/${2}.git" master:gh-pages
  exit;
 fi
 
