@@ -1,0 +1,32 @@
+language: bash
+install: true
+addons:
+  apt:
+    packages:
+    - lua5.3
+    - python2.7
+    - luarocks
+before_install:
+  - "`luarocks path`" # execute the luarocks output - sets the paths for 'local' tree
+  
+script: "[[ -n $TRAVIS_TAG ]] && ./build.sh web || ./build.sh" # web only for tags
+
+before_deploy:
+
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: ${github_token}
+  file:
+  - target/haru-project.love
+  - target/haru-project-win.zip
+  - target/haru-project-web.zip
+  on:
+    tags: true
+after_success:
+- "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"
+env:
+  global:
+  - secure: ${github_token}
