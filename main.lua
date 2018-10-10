@@ -1,40 +1,91 @@
-rect_width = 100
-rect_height = 100
-rect_x = (love.graphics.getWidth() - rect_width) / 2
-rect_y = (love.graphics.getHeight() - rect_height) / 2
+enemy = {}
+enemies_controller = {}
+enemies_controller.enemies = {}
 
-function love.load()
-  rect = {
-    width = rect_width,
-    height = rect_height,
-    x = rect_x,
-    y = rect_y,
-    dragging = { active = false, diffX = 0, diffY = 0 }
+require("library")
+require("draw")
+require("load")
+require("shipClass")
+
+function enemies_controller:spawnEnemy(x, y)
+  enemy = {
+    x = x,
+    y = y,
+    bullets = {},
+    cooldown = 20,
+    speed = 10
   }
+  table.insert(self.enemies, enemy)
+end
+
+function enemy:fire()
+  if self.cooldown <= 0 then
+    self.cooldown = 20
+    bullet = {
+      x = self.x + 35,
+      y = self.y
+    }
+    table.insert(self.bullets, bullet)
+  end
 end
 
 function love.update(dt)
-  if rect.dragging.active then
-    rect.x = love.mouse.getX() - rect.dragging.diffX
-    rect.y = love.mouse.getY() - rect.dragging.diffY
+  player.cooldown = player.cooldown - 1
+
+  if love.keyboard.isDown("up") then
+    if player.y >= 0 then
+      if love.keyboard.isDown("lshift") then
+        player.y = player.y - ship.speed / 2
+      else
+        player.y = player.y - ship.speed
+      end
+    end
+
+  elseif love.keyboard.isDown("down") then
+    if player.y <= love.graphics.getHeight() - ship_height then
+      if love.keyboard.isDown("lshift") then
+        player.y = player.y + ship.speed / 2
+      else
+        player.y = player.y + ship.speed
+      end
+    end
+  end
+
+  if love.keyboard.isDown("right") then
+    if player.x <= love.graphics.getWidth() - ship_width then
+      if love.keyboard.isDown("lshift") then
+        player.x = player.x + ship.speed / 2
+      else
+        player.x = player.x + ship.speed
+      end
+    end
+
+  elseif love.keyboard.isDown("left") then
+    if player.x >= 0 then
+      if love.keyboard.isDown("lshift") then
+        player.x = player.x - ship.speed / 2
+      else
+        player.x = player.x - ship.speed
+      end
+    end
+  end
+
+  if love.keyboard.isDown("z") then
+    player.fire()
+  end
+
+  for _,e in pairs(enemies_controller.enemies) do
+    e.y = e.y + 1.5
+  end
+
+  for i,b in ipairs(player.bullets) do
+    if b.y < - 10 then
+      table.remove(player.bullets, i)
+    end
+    b.y = b.y - 12
   end
 end
 
-function love.draw()
-  love.graphics.rectangle("fill", rect.x, rect.y, rect.width, rect.height)
-end
-
-function love.mousepressed(x, y, button, istouch)
-  if button == 1
-  and x > rect.x and x < rect.x + rect.width
-  and y > rect.y and y < rect.y + rect.height
-  then
-    rect.dragging.active = true
-    rect.dragging.diffX = x - rect.x
-    rect.dragging.diffY = y - rect.y
-  end
-end
-
-function love.mousereleased(x, y, button, istouch)
-  if button == 1 then rect.dragging.active = false end
+function love.quit()
+  print("Thanks for playing!")
 end
