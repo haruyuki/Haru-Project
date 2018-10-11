@@ -1,21 +1,22 @@
 Ship = {}
+Ship.__index = Ship
 
-function Ship:new(o, image, scale, speed, bullet)  -- Initialise the Ship class
-  o = o or {}
-  setmetatable(o, self)
-  self.__index = self
-  image = image or ''
-  scale = scale or {x = 1, y = 1}
-  speed = speed or 3
-  bullet = bullet or Bullet:new(nil)
+setmetatable(Ship, {
+  __call = function (cls, ...)
+    return cls.new(...)
+  end,
+})
+
+function Ship.new(image, scale, speed, bullet)
+  local self = setmetatable({}, Ship)
   self.image = love.graphics.newImage(image);
-  self.scale = scale
-  self.speed = speed
-  self.bullet = bullet
+  self.scale = scale or {x = 1, y = 1}
+  self.speed = speed or 3
+  self.bullet = bullet or Bullet:new(nil)
   self.bullets = {}
   self.x = love.graphics.getWidth() / 2
   self.y = love.graphics.getHeight() - self.image:getHeight() - 10
-  return o
+  return self
 end
 
 function Ship:getDimensions()  -- Returns the width and height of the ship

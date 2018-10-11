@@ -1,34 +1,8 @@
-enemy = {}
-enemies_controller = {}
-enemies_controller.enemies = {}
-
 require "library"
 require "draw"
 require "load"
 require "bulletClass"
 require "shipClass"
-
-function enemies_controller:spawnEnemy(x, y)
-  enemy = {
-    x = x,
-    y = y,
-    bullets = {},
-    cooldown = 20,
-    speed = 10
-  }
-  table.insert(self.enemies, enemy)
-end
-
-function enemy:fire()
-  if self.cooldown <= 0 then
-    self.cooldown = 20
-    bullet = {
-      x = self.x + 35,
-      y = self.y
-    }
-    table.insert(self.bullets, bullet)
-  end
-end
 
 function love.update(dt)
   if ship.bullet.cooldown > 0 then
@@ -77,9 +51,9 @@ function love.update(dt)
     ship:fire()
   end
 
-  for _,e in pairs(enemies_controller.enemies) do
-    e.y = e.y + 1.5
-  end
+  -- for _,e in pairs(enemies_controller.enemies) do
+  --   e.y = e.y + 1.5
+  -- end
 
   for i,b in ipairs(ship.bullets) do
     if b.y < - 10 then

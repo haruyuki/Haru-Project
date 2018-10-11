@@ -1,30 +1,34 @@
--- Meta class
 Bullet = {}
+Bullet.__index = Bullet
 
--- Base class method new
+setmetatable(Bullet, {
+  __call = function (cls, ...)
+    return cls.new(...)
+  end,
+})
 
-function Bullet:new (o, image, scale, speed, cooldown)
-   o = o or {}
-   setmetatable(o, self)
-   self.__index = self
-   image = image or ''
-   scale = scale or {x = 1, y = 1}
-   speed = speed or 3
-   cooldown = cooldown or 10
-   self.image = love.graphics.newImage(image);
-   self.scale = scale
-   self.speed = speed
-   self.masterCooldown = cooldown
-   self.cooldown = cooldown
-   return o
+function Bullet.new(image, scale, speed, cooldown)
+  local self = setmetatable({}, Bullet)
+  self.image = love.graphics.newImage(image);
+  self.scale = scale or {x = 1, y = 1}
+  self.speed = speed or 3
+  self.masterCooldown = cooldown
+  self.cooldown = cooldown
+  return self
 end
 
--- Base class method printArea
-
-function Bullet:increaseSpeed ()
-   print("Speed increased from "..self.speed)
-end
-
-function Bullet:getDimensions ()
+function Bullet:getDimensions()  -- Returns the width and height of the bullet
    return {width = self.image:getWidth(), height = self.image:getHeight()}
+end
+
+function Bullet:decreaseSpeed(speed)  -- Decrease bullet speed
+  if self.speed > 0 then
+    self.speed = self.speed - speed
+  end
+end
+
+function Bullet:increaseSpeed(speed)  -- Increase bullet speed
+  if self.speed < 10 then
+    self.speed = self.speed + speed
+  end
 end
