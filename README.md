@@ -1,6 +1,6 @@
 # <img src="https://i.imgur.com/Hp5oZ0o.png" width="600" alt="Haru Project!">
 
-
+[![Build Status](https://travis-ci.com/haruyuki/Haru-Project.svg?token=sz9EfaY65y1dePiQtxzm&branch=master)](https://travis-ci.com/haruyuki/Haru-Project)
 [![Lua 5.3.5](https://img.shields.io/badge/Lua-5.3.5-blue.svg)](https://www.lua.org)
 [![LÖVE 11.1](https://img.shields.io/badge/LÖVE-11.1-blue.svg)](https://love2d.org)
 [![License](https://img.shields.io/github/license/haruyuki/Haru-Project.svg)](https://github.com/haruyuki/Haru-Project/blob/master/LICENSE)
