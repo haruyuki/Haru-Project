@@ -34,7 +34,7 @@ if [ "$1" == "mac" ]; then
   plistutil -replace CFBundleName -string "${P}" "target/love.app/Contents/Info.plist"
   plistutil -replace CFBundleIdentifier -string "com.blustar.${P}" "target/love.app/Contents/Info.plist"
   plistutil -remove UTExportedTypeDeclarations "target/love.app/Contents/Info.plist"
-  mv "target/love.app" "target${P}.app"
+  mv "target/love.app" "target/${P}.app"
   zip -ry "target/${P}-mac.zip" "target/${P}.app/"
 fi
 
