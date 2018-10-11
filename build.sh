@@ -31,9 +31,7 @@ if [ "$1" == "mac" ]; then
   if [ ! -f "target/love-mac.zip" ]; then wget "${MAC}" -qO "target/love-mac.zip"; fi
   unzip -qo "target/love-mac.zip" -d "target"
   cp "target/${P}.love" "target/love.app/Contents/Resources"
-  plistutil -replace CFBundleName -string "${P}" "target/love.app/Contents/Info.plist"
-  plistutil -replace CFBundleIdentifier -string "com.blustar.${P}" "target/love.app/Contents/Info.plist"
-  plistutil -remove UTExportedTypeDeclarations "target/love.app/Contents/Info.plist"
+  python plutil.py
   mv "target/love.app" "target/${P}.app"
   zip -ry "target/${P}-mac.zip" "target/${P}.app/"
 fi
