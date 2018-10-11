@@ -12,7 +12,7 @@ addons:
     - libzip2
     - libzip-dev
 
-before_install:
+install:
   - luarocks install --local love-release
 
 env:
