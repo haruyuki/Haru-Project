@@ -10,7 +10,7 @@ addons:
     - luarocks
 
 before_install:
-  - luarocks install love-release
+  - luarocks install --local love-release
 
 env:
   global:
