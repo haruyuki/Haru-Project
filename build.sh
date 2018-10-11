@@ -23,7 +23,7 @@ fi
 if [ "$1" == "create" ]; then
   mkdir target && cp -r src target/
   cd target/src
-  zip -9r "../${P}.love" .
+  zip -9qr "../${P}.love" .
   cd -
 fi
 
@@ -33,7 +33,7 @@ if [ "$1" == "mac" ]; then
   cp "target/${P}.love" "target/love.app/Contents/Resources"
   python plutil.py
   mv "target/love.app" "target/${P}.app"
-  zip -ry "target/${P}-mac.zip" "target/${P}.app/"
+  zip -rqy "target/${P}-mac.zip" "target/${P}.app/"
 fi
 
 if [ "$1" == "win32" ]; then
@@ -42,7 +42,7 @@ if [ "$1" == "win32" ]; then
   cd "target/love-${LV}.0-win32"
   cat "love.exe" "../${P}.love" > "${P}.exe"
   rm changes.txt readme.txt love.exe lovec.exe
-  zip -ry "../${P}-win32.zip" "./"
+  zip -rqy "../${P}-win32.zip" "./"
 fi
 
 if [ "$1" == "win64" ]; then
@@ -51,7 +51,7 @@ if [ "$1" == "win64" ]; then
   cd "target/love-${LV}.0-win64"
   cat "love.exe" "../${P}.love" > "${P}.exe"
   rm changes.txt readme.txt love.exe lovec.exe
-  zip -ry "../${P}-win64.zip" "./"
+  zip -rqy "../${P}-win64.zip" "./"
 fi
 
 if [ "$1" == "web" ]; then
@@ -64,5 +64,5 @@ if [ "$1" == "web" ]; then
   python ../emscripten/tools/file_packager.py game.data --preload ../../src@/ --js-output=game.js
   cd "../../"
   cp -r love.js/release-compatibility "${P}-web"
-  zip -r "${P}-web.zip" "${P}-web/"
+  zip -rq "${P}-web.zip" "${P}-web/"
 fi
