@@ -29,7 +29,7 @@ fi
 
 if [ "$1" == "mac" ]; then
   if [ ! -f "target/love-mac.zip" ]; then wget "${MAC}" -qO "target/love-mac.zip"; fi
-  unzip -o "target/love-mac.zip" -d "target"
+  unzip -qo "target/love-mac.zip" -d "target"
   cp "target/${P}.love" "target/love.app/Contents/Resources"
   plistutil -replace CFBundleName -string "${P}" "target/love.app/Contents/Info.plist"
   plistutil -replace CFBundleIdentifier -string "com.blustar.${P}" "target/love.app/Contents/Info.plist"
@@ -40,7 +40,7 @@ fi
 
 if [ "$1" == "win32" ]; then
   if [ ! -f "target/love-win32.zip" ]; then wget "${WIN32}" -qO "target/love-win32.zip"; fi
-  unzip -o "target/love-win.zip" -d "target"
+  unzip -qo "target/love-win.zip" -d "target"
   cd "target/love-${LV}.0-win32"
   cat "love.exe" "../${P}.love" > "${P}.exe"
   rm changes.txt readme.txt love.exe lovec.exe
@@ -49,7 +49,7 @@ fi
 
 if [ "$1" == "win64" ]; then
   if [ ! -f "target/love-win64.zip" ]; then wget "${WIN64}" -qO "target/love-win64.zip"; fi
-  unzip -o "target/love-win.zip" -d "target"
+  unzip -qo "target/love-win.zip" -d "target"
   cd "target/love-${LV}.0-win64"
   cat "love.exe" "../${P}.love" > "${P}.exe"
   rm changes.txt readme.txt love.exe lovec.exe
