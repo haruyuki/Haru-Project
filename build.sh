@@ -28,7 +28,7 @@ if [ "$1" == "create" ]; then
 fi
 
 if [ "$1" == "mac" ]; then
-  if [ ! -f "target/love-mac.zip" ]; then wget "${MAC}" -O "target/love-mac.zip"; fi
+  if [ ! -f "target/love-mac.zip" ]; then wget "${MAC}" -qO "target/love-mac.zip"; fi
   unzip -o "target/love-mac.zip" -d "target"
   cp "target/${P}.love" "target/love.app/Contents/Resources"
   plistutil -replace CFBundleName -string "${P}" "target/love.app/Contents/Info.plist"
@@ -39,7 +39,7 @@ if [ "$1" == "mac" ]; then
 fi
 
 if [ "$1" == "win32" ]; then
-  if [ ! -f "target/love-win32.zip" ]; then wget "${WIN32}" -O "target/love-win32.zip"; fi
+  if [ ! -f "target/love-win32.zip" ]; then wget "${WIN32}" -qO "target/love-win32.zip"; fi
   unzip -o "target/love-win.zip" -d "target"
   cd "target/love-${LV}.0-win32"
   cat "love.exe" "../${P}.love" > "${P}.exe"
@@ -48,7 +48,7 @@ if [ "$1" == "win32" ]; then
 fi
 
 if [ "$1" == "win64" ]; then
-  if [ ! -f "target/love-win64.zip" ]; then wget "${WIN64}" -O "target/love-win64.zip"; fi
+  if [ ! -f "target/love-win64.zip" ]; then wget "${WIN64}" -qO "target/love-win64.zip"; fi
   unzip -o "target/love-win.zip" -d "target"
   cd "target/love-${LV}.0-win64"
   cat "love.exe" "../${P}.love" > "${P}.exe"
