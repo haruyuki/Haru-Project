@@ -2,12 +2,11 @@ enemy = {}
 enemies_controller = {}
 enemies_controller.enemies = {}
 
-require("library")
-require("draw")
-require("load")
-
-require("bulletClass")
-require("shipClass")
+require "library"
+require "draw"
+require "load"
+require "bulletClass"
+require "shipClass"
 
 function enemies_controller:spawnEnemy(x, y)
   enemy = {
