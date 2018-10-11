@@ -1,6 +1,8 @@
 require "library"
 require "draw"
 require "load"
+require "enemyClass"
+require "enemyControllerClass"
 require "bulletClass"
 require "shipClass"
 

@@ -9,11 +9,12 @@ setmetatable(Bullet, {
 
 function Bullet.new(image, scale, speed, cooldown)
   local self = setmetatable({}, Bullet)
-  self.image = love.graphics.newImage(image);
+  image = image or 'assets/weapons/default.png'
+  self.image = love.graphics.newImage(image)
   self.scale = scale or {x = 1, y = 1}
   self.speed = speed or 3
-  self.masterCooldown = cooldown
-  self.cooldown = cooldown
+  self.masterCooldown = cooldown or 20
+  self.cooldown = cooldown or 20
   return self
 end
 

@@ -9,10 +9,11 @@ setmetatable(Ship, {
 
 function Ship.new(image, scale, speed, bullet)
   local self = setmetatable({}, Ship)
+  image = image or 'assets/ships/default.png'
   self.image = love.graphics.newImage(image);
   self.scale = scale or {x = 1, y = 1}
   self.speed = speed or 3
-  self.bullet = bullet or Bullet:new(nil)
+  self.bullet = bullet or Bullet()
   self.bullets = {}
   self.x = love.graphics.getWidth() / 2
   self.y = love.graphics.getHeight() - self.image:getHeight() - 10
