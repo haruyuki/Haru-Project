@@ -8,6 +8,8 @@ addons:
     - lua5.1
     - python2.7
     - luarocks
+    - libzip4
+    - libzip-dev
 
 before_install:
   - luarocks install --local love-release
