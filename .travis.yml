@@ -1,6 +1,7 @@
 language: bash
 sudo: false
 install: true
+
 addons:
   apt:
     packages:
@@ -9,12 +10,17 @@ addons:
     - luarocks
 
 before_install:
-  - "`luarocks path`" # execute the luarocks output - sets the paths for 'local' tree
+  - luarocks install love-release
+
+env:
+  global:
+  - secure: ${github_token}
   
-script: "[[ -n $TRAVIS_TAG ]] && ./build.sh web || ./build.sh" # web only for tags
+script:
+  - love-release test/ src/
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh web || ./build.sh" # web only for tags
 
-before_deploy:
-
+after_success: "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"
 
 deploy:
   provider: releases
@@ -27,8 +33,3 @@ deploy:
   - target/haru-project-web.zip
   on:
     tags: true
-after_success:
-- "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"
-env:
-  global:
-  - secure: ${github_token}

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 
 P="haru-project"
 LV="11.1" # love version
@@ -19,21 +18,18 @@ if [ "$1" == "deploy" ]; then
  git config user.email "autodeploy"
  touch .
  git add .
- git commit -m "deploy to github pages"
+ git commit -m "Deploy to GitHub Pages"
  git push --force --quiet "https://${github_token}@github.com/${2}.git" master:gh-pages
+
  exit;
 fi
 
 ##### build #####
 find . -iname "*.lua" | xargs luac -p || { echo 'luac parse test failed' ; exit 1; }
-mkdir "target"
 
 ### .love
-cp -r src target	
+mkdir target && cp -r src target/
 cd target/src
-
-# compile .ink story into lua table so the runtime will not need lpeg dep.
-lua lib/pink/pink/pink.lua parse game.ink > game.lua
 
 # .love file
 zip -9 -r - . > "../${P}.love"
@@ -55,15 +51,13 @@ rm -r "$tmp"
 ### web
 if [ "$1" == "web" ]; then
 cd target
-rm -rf love.js *-web*
 git clone https://github.com/TannerRogalsky/love.js.git
 cd love.js
-git checkout 6fa910c2a28936c3ec4eaafb014405a765382e08
 git submodule update --init --recursive
 
 cd release-compatibility
-python ../emscripten/tools/file_packager.py game.data --preload ../../../target/src/@/ --js-output=game.js
-python ../emscripten/tools/file_packager.py game.data --preload ../../../target/src/@/ --js-output=game.js
+python ../emscripten/tools/file_packager.py game.data --preload ../../../target/src@/ --js-output=game.js
+python ../emscripten/tools/file_packager.py game.data --preload ../../../target/src@/ --js-output=game.js
 #yes, two times!
 # python -m SimpleHTTPServer 8000
 cd ../..
