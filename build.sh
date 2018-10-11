@@ -53,7 +53,7 @@ if [ "$1" == "win64" ]; then
   cd "target/love-${LV}.0-win64"
   cat "love.exe" "../${P}.love" > "${P}.exe"
   rm changes.txt readme.txt love.exe lovec.exe
-  zip -ry "../${P}-win32.zip" "./"
+  zip -ry "../${P}-win64.zip" "./"
 fi
 
 if [ "$1" == "web" ]; then
