@@ -18,10 +18,10 @@ before_script:
 
 script:
   - ./build.sh create
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh mac || exit 0"
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win32 || exit 0"
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win64 || exit 0"
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh web || exit 0"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh mac || :"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win32 || :"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win64 || :"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh web || :"
 
 after_success: "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"
 
