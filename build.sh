@@ -33,7 +33,8 @@ if [ "$1" == "mac" ]; then
   cp "target/${P}.love" "target/love.app/Contents/Resources"
   python plutil.py
   mv "target/love.app" "target/${P}.app"
-  zip -rqy "target/${P}-mac.zip" "target/${P}.app/"
+  cd "target"
+  zip -rqy "${P}-mac.zip" "${P}.app/"
 fi
 
 if [ "$1" == "win32" ]; then
