@@ -1,6 +1,5 @@
 language: bash
 sudo: false
-dist: xenial
 install: true
 
 addons:
@@ -8,12 +7,21 @@ addons:
     packages:
     - lua5.1
     - python2.7
+    - libplist-utils
 
 env:
   global:
   - secure: ${github_token}
-  
-script: "[[ -n $TRAVIS_TAG ]] && ./build.sh web || ./build.sh" # web only for tags
+
+before_script:
+  - find . -iname "*.lua" | xargs luac -p || { echo 'luac parse test failed' ; exit 1; }
+
+script:
+  - ./build.sh create
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh mac"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win32"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win64"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh web"
 
 after_success: "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"
 
@@ -24,7 +32,9 @@ deploy:
     secure: ${github_token}
   file:
   - target/haru-project.love
-  - target/haru-project-win.zip
+  - target/haru-project-mac.zip
+  - target/haru-project-win32.zip
+  - target/haru-project-win64.zip
   - target/haru-project-web.zip
   on:
     tags: true
