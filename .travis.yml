@@ -9,7 +9,7 @@ addons:
     - lua5.1
     - python2.7
     - luarocks
-    - libzip4
+    - libzip2
     - libzip-dev
 
 before_install:
