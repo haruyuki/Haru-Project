@@ -54,6 +54,10 @@ function love.update(dt)
     ship:fire()
   end
 
+  if #enemyController.enemies == 0 then
+    game_win = true
+  end
+
   for i,e in ipairs(enemyController.enemies) do
     if e.y > love.graphics.getHeight() + 10 then
       -- table.remove(enemyController.enemies, i)
