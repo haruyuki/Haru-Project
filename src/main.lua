@@ -53,9 +53,12 @@ function love.update(dt)
     ship:fire()
   end
 
-  -- for _,e in pairs(enemies_controller.enemies) do
-  --   e.y = e.y + 1.5
-  -- end
+  for i,e in ipairs(enemyController.enemies) do
+    if e.y > love.graphics.getHeight() + 10 then
+      table.remove(enemyController.enemies, i)
+    end
+    e.y = e.y + e.speed
+  end
 
   for i,b in ipairs(ship.bullets) do
     if b.y < - 10 then

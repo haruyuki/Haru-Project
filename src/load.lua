@@ -6,14 +6,13 @@ function love.load()
   ship = Ship('assets/ships/ship2/orange.png', {x = 0.45, y = 0.45}, 4.5, bullet)
   enemyBullet = Bullet('assets/weapons/green/laserGreen11.png', {x = 1, y = 1}, 12, 8)
   enemyController = EnemyController()
+  enemy = enemyController:createEnemy('assets/enemies/default/black.png', {x = 0.45, y = 0.45}, 1.5)
+  enemy2 = enemyController:createEnemy('assets/enemies/default/black.png', {x = 0.45, y = 0.45}, 1.5)
 
   bg = love.graphics.newImage("assets/backgrounds/blue.png")
   bg:setWrap("repeat", "repeat")
   bg_quad = love.graphics.newQuad(0, 0, love.graphics.getWidth(), love.graphics.getHeight(), bg:getWidth(), bg:getHeight())
 
-
-  -- enemyBullet = Bullet:new(nil, 'assets/weapons/green/laserGreen11.png', {x = 1, y = 1}, 12, 8)
-  -- enemy = enemyController:createEnemy(nil, 'assets/enemies/enemyBlack1.png', {x = 1, y = 1}, 1.5, enemyBullet)
-  -- enemies_controller:spawnEnemy(0, 0)
-  -- enemies_controller:spawnEnemy(300, 0)
+  enemyController:spawnEnemy(enemy, 300, 0)
+  enemyController:spawnEnemy(enemy2, 0, 0)
 end

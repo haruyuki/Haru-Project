@@ -7,13 +7,23 @@ setmetatable(EnemyController, {
   end,
 })
 
-function EnemyController.new(image, scale, speed, bullet)
+function EnemyController.new()
   local self = setmetatable({}, EnemyController)
+  self.enemiesList = {}
+  self.enemies = {}
   return self
 end
 
-function EnemyController:spawnEnemy(image, scale, speed, bullet)
-	return Ship(image, scale, speed, bullet)
+function EnemyController:createEnemy(image, scale, speed, bullet)
+	enemy = Enemy(image, scale, speed, bullet)
+	table.insert(self.enemiesList, enemy)
+	return enemy
+end
+
+function EnemyController:spawnEnemy(enemy, x, y)
+	enemy.x = x
+	enemy.y = y
+	table.insert(self.enemies, enemy)
 end
 
 function EnemyController:getDimensions()  -- Returns the width and height of the enemy
