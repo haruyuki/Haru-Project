@@ -1,4 +1,7 @@
 function love.load()
+  cursor = love.graphics.newImage("assets/ui/cursor.png")
+  love.mouse.setVisible(false)
+
   ship_width = 30
   ship_height = 40
 
