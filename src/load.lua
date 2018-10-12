@@ -1,4 +1,8 @@
 function love.load()
+  music = love.audio.newSource('assets/music/background.mp3', 'stream')
+  music:setLooping(true)
+  love.audio.play(music)
+  
   cursor = love.graphics.newImage("assets/ui/cursor.png")
   love.mouse.setVisible(false)
 
