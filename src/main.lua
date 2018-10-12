@@ -7,6 +7,7 @@ require "classes/Bullet"
 require "classes/Ship"
 
 function love.update(dt)
+  checkCollisions(enemyController.enemies, ship.bullets)
   if ship.bullet.cooldown > 0 then
     ship.bullet.cooldown = ship.bullet.cooldown - 1
   end
