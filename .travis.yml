@@ -18,12 +18,12 @@ before_script:
 
 script:
   - ./build.sh create
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh mac || :"
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win32 || :"
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win64 || :"
-  - "[[ -n $TRAVIS_TAG ]] && ./build.sh web || :"
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh mac || :"  # Build only on tagged commits
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win32 || :"  # Build only on tagged commits
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh win64 || :"  # Build only on tagged commits
+  - "[[ -n $TRAVIS_TAG ]] && ./build.sh web || :"  # Build only on tagged commits
 
-after_success: "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"
+after_success: "[[ -n $TRAVIS_TAG ]] && ./build.sh deploy $TRAVIS_REPO_SLUG"  # Deploy love.js files to gh-pages
 
 deploy:
   provider: releases
