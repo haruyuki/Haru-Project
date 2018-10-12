@@ -56,7 +56,9 @@ function love.update(dt)
 
   for i,e in ipairs(enemyController.enemies) do
     if e.y > love.graphics.getHeight() + 10 then
-      table.remove(enemyController.enemies, i)
+      -- table.remove(enemyController.enemies, i)
+      for k,v in pairs(enemyController.enemies) do enemyController.enemies[k]=nil end
+      game_over = true
     end
     e.y = e.y + e.speed
   end

@@ -2,6 +2,7 @@ function love.load()
   cursor = love.graphics.newImage("assets/ui/cursor.png")
   love.mouse.setVisible(false)
 
+  game_over = false
 
   bullet = Bullet('assets/weapons/red/laserRed01.png', {x = 1, y = 1}, 12, 8)
   ship = Ship('assets/ships/ship2/orange.png', {x = 0.45, y = 0.45}, 4.5, bullet)

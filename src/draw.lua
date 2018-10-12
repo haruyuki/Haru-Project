@@ -1,5 +1,11 @@
 function love.draw()
   love.graphics.draw(cursor, love.mouse.getX() - cursor:getWidth() / 2, love.mouse.getY() - cursor:getHeight() / 2)
+
+  if game_over then
+    love.graphics.draw(dark_bg, dark_bg_quad, 0, 0)
+    love.graphics.print("Game Over!", love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+    return
+  end
   love.graphics.draw(bg, bg_quad, 0, 0)
   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
 
