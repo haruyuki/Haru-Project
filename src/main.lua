@@ -1,10 +1,10 @@
 require "library"
 require "draw"
 require "load"
-require "enemyClass"
-require "enemyControllerClass"
-require "bulletClass"
-require "shipClass"
+require "classes/Enemy"
+require "classes/enemyController"
+require "classes/Bullet"
+require "classes/Ship"
 
 function love.update(dt)
   if ship.bullet.cooldown > 0 then
