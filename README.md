@@ -5,7 +5,7 @@
 [![LÖVE 11.1](https://img.shields.io/badge/LÖVE-11.1-blue.svg)](https://love2d.org)
 [![License](https://img.shields.io/github/license/haruyuki/Haru-Project.svg)](https://github.com/haruyuki/Haru-Project/blob/master/LICENSE)
 
-The classic spaceship shooter game written in Lua using the LÖVE game framework. As the name suggests, this will be a small project I will be creating through these Spring months.
+The classic spaceship shooter game written in Lua using the LÖVE game framework.
 
 ### Controls
 
