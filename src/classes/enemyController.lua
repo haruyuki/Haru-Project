@@ -9,18 +9,12 @@ setmetatable(EnemyController, {
 
 function EnemyController.new()
   local self = setmetatable({}, EnemyController)
-  self.enemiesList = {}
   self.enemies = {}
   return self
 end
 
-function EnemyController:createEnemy(image, scale, speed, bullet)
-	enemy = Enemy(image, scale, speed, bullet)
-	table.insert(self.enemiesList, enemy)
-	return enemy
-end
-
-function EnemyController:spawnEnemy(enemy, x, y)
+function EnemyController:spawnEnemy(x, y, image, scale, speed, bullet)
+  enemy = Enemy(image, scale, speed, bullet)
 	enemy.x = x
 	enemy.y = y
 	table.insert(self.enemies, enemy)

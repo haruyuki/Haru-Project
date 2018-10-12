@@ -1,7 +1,7 @@
 function love.draw()
+  love.graphics.draw(cursor, love.mouse.getX() - cursor:getWidth() / 2, love.mouse.getY() - cursor:getHeight() / 2)
   love.graphics.draw(bg, bg_quad, 0, 0)
   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
-  love.graphics.draw(cursor, love.mouse.getX() - cursor:getWidth() / 2, love.mouse.getY() - cursor:getHeight() / 2)
 
   love.graphics.setColor(RGB(255, 255, 255))
   love.graphics.draw(ship.image, ship.x, ship.y, 0 ,ship.scale.x, ship.scale.y, ship.image:getWidth() / 2, ship.image:getHeight() / 2)
