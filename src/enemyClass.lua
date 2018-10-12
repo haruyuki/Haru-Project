@@ -9,7 +9,7 @@ setmetatable(Enemy, {
 
 function Enemy.new(image, scale, speed, bullet)
   local self = setmetatable({}, Enemy)
-  image = image or 'assets/enemies/default.png'
+  image = image or 'assets/enemies/default/black.png'
   self.image = love.graphics.newImage(image);
   self.scale = scale or {x = 1, y = 1}
   self.speed = speed or 3

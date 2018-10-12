@@ -3,10 +3,9 @@ function love.load()
   ship_height = 40
 
   bullet = Bullet('assets/weapons/red/laserRed01.png', {x = 1, y = 1}, 12, 8)
-  ship = Ship('assets/ships/orange/ship2.png', {x = 0.45, y = 0.45}, 4.5, bullet)
+  ship = Ship('assets/ships/ship2/orange.png', {x = 0.45, y = 0.45}, 4.5, bullet)
   enemyBullet = Bullet('assets/weapons/green/laserGreen11.png', {x = 1, y = 1}, 12, 8)
-  enemyController = EnemyController('assets/enemies/default.png', {x = 0.45, y = 0.45}, 12)
-
+  enemyController = EnemyController()
 
   bg = love.graphics.newImage("assets/backgrounds/blue.png")
   bg:setWrap("repeat", "repeat")
