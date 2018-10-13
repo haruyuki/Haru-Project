@@ -9,7 +9,7 @@ function love.load()
   game_over = false
   game_win = false
 
-  bullet = Bullet('assets/weapons/red/laserRed01.png', {x = 1, y = 1}, 12, 8)
+  bullet = Bullet('assets/weapons/red/laserRed01.png', {x = 1, y = 1}, 12, 15)
   ship = Ship('assets/ships/ship2/orange.png', {x = 0.45, y = 0.45}, 4.5, bullet)
   enemyBullet = Bullet('assets/weapons/green/laserGreen11.png', {x = 1, y = 1}, 12, 8)
   enemyController = EnemyController(10)
