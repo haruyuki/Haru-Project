@@ -13,7 +13,7 @@ function love.update(dt)
   end
 
   if love.keyboard.isDown("up") then
-    if ship.y >= 0 then
+    if ship.y >= ship.image:getHeight() * ship.scale.y then
       if love.keyboard.isDown("lshift") then
         ship.y = ship.y - ship.speed / 2
       else
@@ -22,7 +22,7 @@ function love.update(dt)
     end
 
   elseif love.keyboard.isDown("down") then
-    if ship.y <= love.graphics.getHeight() then
+    if ship.y <= love.graphics.getHeight() - ship.image:getHeight() * ship.scale.y then
       if love.keyboard.isDown("lshift") then
         ship.y = ship.y + ship.speed / 2
       else
@@ -54,9 +54,21 @@ function love.update(dt)
     ship:fire()
   end
 
-  if #enemyController.enemies == 0 then
+
+  if not game_win or not game_over then
+    enemyController.cooldown = enemyController.cooldown - 1
+    if enemyController.cooldown < 0 then
+      enemyController.cooldown = enemyController.masterCooldown
+      random = math.random(10, love.graphics.getWidth() - 10)
+      enemyController:spawnEnemy(random, -50, 'assets/enemies/default/black.png', {x = 0.45, y = 0.45}, 1.5)
+    end
+  end
+
+  if enemyController.killed > 10 then
+    for k,v in pairs(enemyController.enemies) do enemyController.enemies[k]=nil end
     game_win = true
   end
+
 
   for i,e in ipairs(enemyController.enemies) do
     if e.y > love.graphics.getHeight() + 10 then

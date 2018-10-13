@@ -7,8 +7,11 @@ setmetatable(EnemyController, {
   end,
 })
 
-function EnemyController.new()
+function EnemyController.new(cooldown)
   local self = setmetatable({}, EnemyController)
+  self.masterCooldown = cooldown
+  self.cooldown = cooldown
+  self.killed = 0
   self.enemies = {}
   return self
 end
